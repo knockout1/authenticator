@@ -1,0 +1,38 @@
+{
+  "info": {
+    "_postman_id": "ca6178ed-4d0a-4c3e-b6a5-62f083c3af9f",
+    "name": "Authentificator",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "authentificate",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"userName\" : \"user\",\n\t\"password\" : \"pass\"\n}"
+        },
+        "url": {
+          "raw": "localhost:8081/authenticate",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "authenticate"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

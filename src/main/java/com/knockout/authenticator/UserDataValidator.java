@@ -1,5 +1,7 @@
 package com.knockout.authenticator;
 
+import com.knockout.authenticator.Exceptions.UserDoesntExistException;
+import com.knockout.authenticator.Exceptions.WrongCredentialException;
 import com.knockout.authenticator.model.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -22,8 +24,12 @@ public class UserDataValidator {
 
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    public Boolean userExist(User user){
+    void checkUserCredentials(User user) {
        List<User> userFromDB = userRepository.findUserByUserName(user.getUserName());
-       return (passwordEncoder.matches(user.getPassword(), userFromDB.get(1).getPassword()));
+        if (userFromDB.size() != 1) {
+            throw new UserDoesntExistException();
+        } else if (!passwordEncoder.matches(user.getPassword(), userFromDB.get(0).getPassword())) {
+            throw new WrongCredentialException();
+        }
     }
 }
