@@ -15,14 +15,14 @@ public class JwtProvider {
     @Value("${jwt.secret}")
     private String secret;
 
-    String generateJwt(User user) {
+    public String generateJwt(User user) {
         return Jwts.builder().setIssuer("knockout.com")
                 .setSubject(user.getUserName())
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .compact();
     }
 
-    Boolean validateJwt(String jwt) {
+    public Boolean validateJwt(String jwt) {
         try {
             Jws<Claims> claims = Jwts.parser()
                     .setSigningKey(secret)

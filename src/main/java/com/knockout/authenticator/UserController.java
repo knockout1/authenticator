@@ -1,6 +1,7 @@
 package com.knockout.authenticator;
 
 import com.knockout.authenticator.model.User;
+import com.knockout.authenticator.model.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,23 +11,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 
-    private JwtProvider jwtProvider;
-    private UserDataValidator userDataValidator;
+    private UserService userService;
 
-    public UserController(JwtProvider jwtProvider, UserDataValidator userDataValidator) {
-        this.jwtProvider = jwtProvider;
-        this.userDataValidator = userDataValidator;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @PostMapping("/authenticate")
     public ResponseEntity authenticate(@RequestBody User user) {
-        userDataValidator.checkUserCredentials(user);
-        return ResponseEntity.ok(jwtProvider.generateJwt(user));
+        return ResponseEntity.ok(userService.generateJwt(user));
     }
 
     @PostMapping("/validateJwt")
     public ResponseEntity validateJwt(@RequestBody String jwt) {
-        if (jwtProvider.validateJwt(jwt)) {
+        if (userService.validateJwt(jwt)) {
             return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

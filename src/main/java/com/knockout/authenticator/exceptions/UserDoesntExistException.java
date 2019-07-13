@@ -1,4 +1,4 @@
-package com.knockout.authenticator.Exceptions;
+package com.knockout.authenticator.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
