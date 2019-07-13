@@ -1,7 +1,6 @@
 package com.knockout.authenticator;
 
 import com.knockout.authenticator.model.User;
-import com.knockout.authenticator.model.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

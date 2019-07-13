@@ -1,7 +1,6 @@
-package com.knockout.authenticator.model;
+package com.knockout.authenticator;
 
-import com.knockout.authenticator.JwtProvider;
-import com.knockout.authenticator.UserDataValidator;
+import com.knockout.authenticator.model.User;
 import org.springframework.stereotype.Service;
 
 @Service
