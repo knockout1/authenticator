@@ -24,19 +24,10 @@ class UserControllerIT {
     private MockMvc mockMvc;
 
     private BCryptPasswordEncoder passwordEncoder;
-    private User user;
-
-    void setup() {
-        user = new User();
-        user.setUserName("user");
-        passwordEncoder = new BCryptPasswordEncoder();
-        user.setPassword(passwordEncoder.encode("pass"));
-        userRepository.save(user);
-    }
 
     @Test
     void shouldGenerateValidJwtWhenCorrectCredentialProvided() throws Exception {
-        user = new User();
+        User user = new User();
         user.setUserName("user");
         passwordEncoder = new BCryptPasswordEncoder();
         user.setPassword(passwordEncoder.encode("pass"));

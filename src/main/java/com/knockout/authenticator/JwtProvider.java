@@ -12,17 +12,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtProvider {
 
-    @Value("${jwt.secret}")
     private String secret;
 
-    public String generateJwt(User user) {
+    public JwtProvider(@Value("${jwt.secret}") String secret) {
+        this.secret = secret;
+    }
+
+    String generateJwt(User user) {
         return Jwts.builder().setIssuer("knockout.com")
                 .setSubject(user.getUserName())
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .compact();
     }
 
-    public Boolean validateJwt(String jwt) {
+    Boolean validateJwt(String jwt) {
         try {
             Jws<Claims> claims = Jwts.parser()
                     .setSigningKey(secret)
