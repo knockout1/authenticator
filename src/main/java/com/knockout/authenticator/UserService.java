@@ -13,12 +13,12 @@ public class UserService {
         this.userDataValidator = userDataValidator;
     }
 
-    public String generateJwt(User user) {
+    String generateJwt(User user) {
         userDataValidator.checkUserCredentials(user);
         return jwtProvider.generateJwt(user);
     }
 
-    public Boolean validateJwt(String jwt) {
+    Boolean validateJwt(String jwt) {
         return jwtProvider.validateJwt(jwt);
     }
 

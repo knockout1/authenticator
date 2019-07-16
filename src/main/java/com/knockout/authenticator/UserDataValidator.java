@@ -14,10 +14,10 @@ public class UserDataValidator {
     public UserDataValidator(UserRepository userRepository) {
         this.userRepository = userRepository;
         //dummy data for testing purpose
-        User user = new User();
-        user.setUserName("user");
-        user.setPassword(passwordEncoder.encode("pass"));
-        userRepository.save(user);
+        //        User user = new User();
+        //        user.setUserName("user");
+        //        user.setPassword(passwordEncoder.encode("pass"));
+        //        userRepository.save(user);
     }
 
     private UserRepository userRepository;
