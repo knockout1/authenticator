@@ -4,7 +4,6 @@ import com.knockout.authenticator.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -24,10 +23,6 @@ class JwtProviderTest {
         user.setUserName("user");
         user.setPassword("pass");
 
-    }
-
-    @AfterEach
-    void tearDown() {
     }
 
     @Test

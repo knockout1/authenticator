@@ -11,6 +11,9 @@ import java.util.List;
 @Component
 public class UserDataValidator {
 
+    private UserRepository userRepository;
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     public UserDataValidator(UserRepository userRepository) {
         this.userRepository = userRepository;
         //dummy data for testing purpose
@@ -20,11 +23,7 @@ public class UserDataValidator {
         //        userRepository.save(user);
     }
 
-    private UserRepository userRepository;
-
-    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-    public void checkUserCredentials(User user) {
+    void checkUserCredentials(User user) {
        List<User> userFromDB = userRepository.findUserByUserName(user.getUserName());
         if (userFromDB.size() != 1) {
             throw new UserDoesntExistException();
